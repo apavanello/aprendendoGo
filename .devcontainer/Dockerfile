@@ -15,8 +15,9 @@ RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/l
 
 # [Optional] Uncomment the next line to use go get to install anything else you need
 # RUN go get -x <your-dependency-or-tool>
-RUN go get -u github.com/golangci/golangci-lint/cmd/golangci-lint \
-    && go get -u github.com/go-delve/delve/cmd/dlv
+RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.38.0
+
+RUN golangci-lint --version
 
 
 
